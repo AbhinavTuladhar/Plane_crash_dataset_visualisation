@@ -1,12 +1,16 @@
 import streamlit as st
 
+st.set_page_config(layout="wide")
+
+st.markdown('# Colour viewer')
+st.write('Showing all the CSS (ie named) colours for use in other pages.')
+
 # Read the list of colors from a text file
 with open("Colours_list_real.txt", "r") as f:
     colors = [line.strip() for line in f]
 
 # Define the size of the grid
-grid_size = 14
-cols = 5
+cols = 7
 rows = len(colors) // cols + 1
 
 # Define the size of each color box
@@ -23,14 +27,16 @@ table = "<table>"
 for i in range(rows):
     # Add a row for the color boxes and names
     table += "<tr>"
-    try:
-        for j in range(cols):
-            color = colors[i*grid_size + j]
+    for j in range(cols):
+        index = i*cols + j
+        if index < len(colors):
+            color = colors[index]
             table += f"<td style='{name_style}'>{color}</td>"
             table += f"<td style='{box_style} background-color:{color};'></td>"
-        table += "</tr>"
-    except IndexError:
-        break
+        else:
+            # Add an empty cell for any extra cells in the last row
+            table += "<td></td><td></td>"
+    table += "</tr>"
 table += "</table>"
 
 # Display the table
