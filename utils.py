@@ -1,7 +1,6 @@
 """
 A bunch of utlity functions for aggregation, pivot tables, etc.
 """
-
 import pandas as pd
 
 # Load the dataframe.
@@ -74,6 +73,3 @@ def aggregate_columns(
         df_grouped = df_grouped.rename(columns={column_name: date_name})
         
     return df_grouped
-
-answer = aggregate_columns(df=df, column_name='Continent', agg_func='mean', value_column='Survival_rate')
-print(answer)
