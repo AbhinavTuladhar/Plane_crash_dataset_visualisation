@@ -69,21 +69,7 @@ def crashes_per_year():
     )
     st.plotly_chart(fig, use_container_width=True)
 
-def crashes_per_month():
-    st.markdown('## Crashes in each month')
-    df_month = find_crash_counts(df=df, grouping_cols='Month')
 
-    fig = px.histogram(    
-        data_frame=df_month,
-        x='Month',
-        y='Crashes',
-        text_auto=True,
-        nbins=12,
-        title=f'Number of plane crashes per month',
-        color_discrete_sequence=[plot_colour]
-    ).update_layout(bargap=0.05).update_yaxes(title_text='Crashes')
-    st.plotly_chart(fig, use_container_width=True)
-    
 def crashes_per_day_number():
     st.markdown('## Crashes in each day number')
     df_day_number = find_crash_counts(df=df, grouping_cols=df['Date'].dt.day, date_name='Day')
@@ -98,9 +84,25 @@ def crashes_per_day_number():
         color_discrete_sequence=[plot_colour]
     ).update_layout(bargap=0.05).update_yaxes(title_text='Crashes')
     st.plotly_chart(fig, use_container_width=True)
+ 
+def crashes_per_month():
+    st.markdown('## Crashes in each month')
+    df_month = find_crash_counts(df=df, grouping_cols='Month')
+
+    fig = px.histogram(    
+        data_frame=df_month,
+        x='Month',
+        y='Crashes',
+        text_auto=True,
+        nbins=12,
+        title=f'Number of plane crashes per month',
+        color_discrete_sequence=[plot_colour],
+        height=500
+    ).update_layout(bargap=0.2).update_yaxes(title_text='Crashes')
+    st.plotly_chart(fig, use_container_width=True)
     
 def crashes_per_day_of_week():
-    st.markdown('## Crashes in each day day of the week')
+    st.markdown('## Crashes in each day')
     df_day = find_crash_counts(df=df, grouping_cols='Day_of_week')
 
     fig = px.histogram(    
@@ -110,8 +112,9 @@ def crashes_per_day_of_week():
         text_auto=True,
         nbins=7,
         title=f'Number of plane crashes per day of week',
-        color_discrete_sequence=[plot_colour]
-    ).update_layout(bargap=0.05).update_yaxes(title_text='Crashes')
+        color_discrete_sequence=[plot_colour],
+        height=500
+    ).update_layout(bargap=0.2).update_yaxes(title_text='Crashes')
     st.plotly_chart(fig, use_container_width=True)
     
 def crashes_per_decade():
@@ -131,7 +134,8 @@ def crashes_per_decade():
         nbins=int(bin_count),
         title=f'Number of plane crashes per decade',
         orientation='h',
-        color_discrete_sequence=[plot_colour]
+        color_discrete_sequence=[plot_colour],
+        height=500
     ).update_layout(bargap=0.2).update_yaxes(title_text='Crashes')
     st.plotly_chart(fig, use_container_width=True)
     
@@ -193,9 +197,16 @@ def crashes_per_month_day():
     
 if __name__ == "__main__":
     crashes_per_year()
-    crashes_per_month()
+    
     crashes_per_day_number()
-    crashes_per_day_of_week()
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        crashes_per_month()
+    with col2:
+        crashes_per_day_of_week()
+    
     crashes_per_decade()
     
     # For the year-month heatmap, we split the diagram into unequal parts.
