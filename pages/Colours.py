@@ -1,9 +1,11 @@
 import streamlit as st
+import plotly.express as px
+
 
 st.set_page_config(layout="wide")
 
 st.markdown('# Colour viewer')
-st.write('Showing all the CSS (ie named) colours for use in other pages.')
+st.markdown('## CSS Colours')
 
 # Read the list of colors from a text file
 with open("Colours_list_real.txt", "r") as f:
@@ -41,3 +43,8 @@ table += "</table>"
 
 # Display the table
 st.write(table, unsafe_allow_html=True)
+
+# Plotly continuous colours
+st.markdown('# Plotly continous colour scales')
+fig = px.colors.sequential.swatches_continuous()
+st.plotly_chart(fig, use_container_width=True)
