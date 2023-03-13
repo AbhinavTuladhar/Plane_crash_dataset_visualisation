@@ -217,3 +217,4 @@ if __name__ == "__main__":
     
     crashes_per_month_weekday()
     crashes_per_month_day()
+    
