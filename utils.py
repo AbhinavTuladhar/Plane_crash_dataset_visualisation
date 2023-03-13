@@ -41,17 +41,17 @@ def find_crash_counts(
 
 def aggregate_columns(
         df: pd.DataFrame, 
-        column_name: str, 
+        column_names: list[str], 
         agg_func: str, 
         value_column: str,
         date_name: str=None
     ) -> pd.DataFrame:
     """
-    Aggregates `column_name` by the aggregation function `agg_func`.
+    Aggregates `column_names` by the aggregation function `agg_func`.
     
     Arguments:
         df: The dataframe to be ooperated upon.
-        column_name: The column that is to be aggregated by.
+        column_name: The columns that is to be aggregated by.
         value_column: The column containing the values to be aggregated.
         agg_func: The aggregation function to be applied to `column_name`.
         date_name: If a date column is supplied, rename that column to `date_name`.
@@ -60,7 +60,7 @@ def aggregate_columns(
         A pandas DataFrame containing the aggregated data.
     """
     try:
-        df_grouped = df.groupby(column_name) \
+        df_grouped = df.groupby(column_names) \
             [value_column] \
             .agg(agg_func) \
             .reset_index()
@@ -70,6 +70,6 @@ def aggregate_columns(
         raise Exception('The column name is invalid.')
                               
     if date_name is not None:
-        df_grouped = df_grouped.rename(columns={column_name: date_name})
+        df_grouped = df_grouped.rename(columns={'Date': date_name})
         
     return df_grouped
