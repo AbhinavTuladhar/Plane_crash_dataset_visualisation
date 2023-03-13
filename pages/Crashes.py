@@ -197,7 +197,6 @@ def crashes_per_month_day():
     
 if __name__ == "__main__":
     crashes_per_year()
-    
     crashes_per_day_number()
     
     col1, col2 = st.columns(2)
