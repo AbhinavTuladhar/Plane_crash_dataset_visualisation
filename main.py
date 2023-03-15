@@ -23,11 +23,11 @@ st.write("""
 """)
 
 df_old = pd.read_parquet('Result_file_compressed.parquet')
-st.write(df_old)
+st.dataframe(df_old)
 
 st.write('This is what the processed dataset looks like:')
 df_new = pd.read_csv('Processed_dataset/Crash_data_new.csv')
-st.write(df_new)
+st.dataframe(df_new)
 
 print(df_new.dtypes)
 print(df_new['Time'])
