@@ -5,7 +5,6 @@ import pandas as pd
 
 # Load the dataframe.
 df = pd.read_parquet('Processed_dataset/Crash_data_new.parquet')
-print(df)
 
 def find_crash_counts(
         df: pd.DataFrame, 
