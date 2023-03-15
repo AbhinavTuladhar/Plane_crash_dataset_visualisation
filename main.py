@@ -11,9 +11,6 @@ import streamlit as st
 
 st.set_page_config(layout="wide")
 
-with st.sidebar:
-    color = st.color_picker('Pick A Color', '#00f900')
-
 st.markdown("# Plane crash dataset visualisation")
 st.write("""
     This is a simple app to visualise the plane crash dataset. \n
