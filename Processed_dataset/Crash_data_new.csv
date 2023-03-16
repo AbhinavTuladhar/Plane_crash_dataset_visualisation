@@ -867,7 +867,7 @@ Date,Time,Operator,Flight_No,AC_Type,Registration,cn_ln,Ground,Decade,City,Count
 1997-05-08,21:28:00,China Southern Airlines,3456,Boeing B-737-31B,B-2925,27288/2577,0,1990,Huangtian,China,,74,65,9,35,33,2,Chongqing,Shenzen,39,32,7,52.702702702702695,Passenger,May,Thursday,Asia
 1997-04-23,18:00:00,Military - Afghan Republican Air Force,?,Antonov AN-26,?,?,0,1990,Near Konduz,Afghanistan,,36,,,36,,,,?,0,,,0.0,Military,April,Wednesday,Asia
 1997-04-19,07:39:00,Merpati Nusantara Airlines,106,British Aerospace ATP,PK-MTX,2048,0,1990,Tanjung Pandan,Indonesia,,53,48,5,15,11,4,Jakarta,Tanjung Pandan,38,37,1,71.69811320754717,Passenger,April,Saturday,Asia
-1997-04-16,,Military - Niger Air Force,?,Lockheed C-130H Hercules,5U-MBD,4829,0,1990,Near Sorei,Nigeria,,14,,,14,,,Lome,Niamey,0,,,0.0,Military,April,Wednesday,Africa
+1997-04-16,,Military - Niger Air Force,?,Lockheed C-130H Hercules,5U-MBD,4829,0,1990,Near Sorei,Niger,,14,,,14,,,Lome,Niamey,0,,,0.0,Military,April,Wednesday,Africa
 1997-04-15,,Azerbaijan Airlines,?,Yakovlev 40,4K-87504,9510640,0,1990,Gyandzha,Azerbaijan,,6,0,6,6,0,6,,Training,0,0,0,0.0,Passenger,April,Tuesday,Asia
 1997-04-14,,TAAG Angola Airlines,?,Fokker F-27 Friendship 600,D2-TFP,10424,0,1990,Brazzaville,Democratic Republic of the Congo,,7,4,3,3,0,3,Brazzaville,Luanda,4,4,0,57.14285714285714,Passenger,April,Monday,Africa
 1997-04-10,20:30:00,Hageland Aviation Services,502,Cessna 208B Caravan I,N408GV,208B-0455,0,1990,Near Wainwright,United States of America,Alaska,5,4,1,5,4,1,Barrow,Wainwright,0,0,0,0.0,Passenger,April,Thursday,North America
@@ -1328,7 +1328,7 @@ Date,Time,Operator,Flight_No,AC_Type,Registration,cn_ln,Ground,Decade,City,Count
 1989-09-23,20:35:00,Vayudoot,?,Dornier Do-288-201,VT-EJF,8052,0,1980,Ujani Dam,India,,11,8,3,11,8,3,Pune,Hyderabad,0,0,0,0.0,Passenger,September,Saturday,Asia
 1989-09-21,,Military - Afghan Republican Air Force,?,Mil Mi-17 ( helicopter),?,?,0,1980,Near Baghran,Afghanistan,,24,,,24,,,,?,0,,,0.0,Military,September,Thursday,Asia
 1989-09-20,23:21:00,USAir,5050,Boeing B-737-401,N416US,23884/1643,0,1980,"La Guardia Airport,  New York",United States of America,New York,63,57,6,2,2,0,New York City,"Charlotte, NC",61,55,6,96.82539682539682,Passenger,September,Wednesday,North America
-1989-09-19,14:00:00,Union des Transportes Aeriens,772,McDonnell Douglas DC-10-30,N54629,46852/125,0,1980,Near Bilma,Nigeria,,171,156,15,171,156,15,N'Djamena,Paris,0,0,0,0.0,Passenger,September,Tuesday,Africa
+1989-09-19,14:00:00,Union des Transportes Aeriens,772,McDonnell Douglas DC-10-30,N54629,46852/125,0,1980,Near Bilma,Niger,,171,156,15,171,156,15,N'Djamena,Paris,0,0,0,0.0,Passenger,September,Tuesday,Africa
 1989-09-15,,Merpati Nusantara Airlines,?,de Havilland Canada DHC-6 Twin Otter 300,PK-NUE,345,0,1980,Near Bentuni,Indonesia,,22,19,3,22,19,3,Manokwari,Bentuni,0,0,0,0.0,Passenger,September,Friday,Asia
 1989-09-08,16:36:00,Partnair,394,Convair CV-580,LN-PAA,056,0,1980,Skagerrak,Denmark,,55,50,5,55,50,5,Oslo,Hamburg,0,0,0,0.0,Passenger,September,Friday,Europe
 1989-09-03,19:00:00,Cubana de Aviacion,9646,Ilyushin IL-62M,CU-T1281,3850453,45,1980,Near Havana,Cuba,,126,115,11,126,115,11,Havana,"Köln, Bonn",0,0,0,0.0,Passenger,September,Sunday,North America
@@ -1567,7 +1567,7 @@ Date,Time,Operator,Flight_No,AC_Type,Registration,cn_ln,Ground,Decade,City,Count
 1985-02-22,,Air Mali,?,Antonov AN-24V,TZ-ACT,87304104,0,1980,Timbuktu,Mali,,51,49,2,50,48,2,Tombouctou,Bamako,1,1,0,1.9607843137254901,Passenger,February,Friday,Africa
 1985-02-19,09:27:00,Iberia Airlines,610,Boeing B-727-256,EC-DDU,21777/1487,0,1980,"Near Durango,  Vizcaya",Spain,,148,141,7,148,141,7,Madrid,Bilbao,0,0,0,0.0,Passenger,February,Tuesday,Europe
 1985-02-04,19:51:00,North Pacific Airlines,-,Beech Queen Air 65-A80,N50NP,LD-231,0,1980,Soldotna,United States of America,Alaska,9,8,1,9,8,1,"Anchorage, AK","Anchorage, AK",0,0,0,0.0,Passenger,February,Monday,North America
-1985-02-01,08:01:00,Aeroflot,7841,Tupolev TU-134A,CCCP-65910,63971,0,1980,"Minsk,  Belarus",Russia,,80,74,6,58,55,3,Minsk,Leningrad,22,19,3,27.500000000000004,Passenger,February,Friday,Europe
+1985-02-01,08:01:00,Aeroflot,7841,Tupolev TU-134A,CCCP-65910,63971,0,1980,Minsk,Belarus,,80,74,6,58,55,3,Minsk,Leningrad,22,19,3,27.500000000000004,Passenger,February,Friday,Europe
 1985-01-23,10:35:00,AIRES Colombia,585,Embraer 110P1 Bandeirante,HK-2638,110341,0,1980,Near Buga,Colombia,,17,15,2,17,15,2,Florencia,Cali,0,0,0,0.0,Passenger,January,Wednesday,South America
 1985-01-22,09:35:00,Military - U.S. Air Force,?,Lockheed C-130A,56-0501,3109,0,1980,Off Puerto Castilla,Honduras,,21,16,5,21,16,5,Howard AFB,Trujillo AP,0,0,0,0.0,Military,January,Tuesday,North America
 1985-01-21,01:04:00,Galaxy Airlines,203,Lockheed L-188A Electra,N5532,1121,0,1980,Reno,United States of America,Nevada,71,65,6,70,64,6,"Reno, NV - Minneapolis","St. Paul, MN",1,1,0,1.4084507042253522,Passenger,January,Monday,North America
@@ -1686,7 +1686,7 @@ Date,Time,Operator,Flight_No,AC_Type,Registration,cn_ln,Ground,Decade,City,Count
 1982-07-09,16:09:00,Pan American World Airways,759,Boeing B-727-235,N4737,19457/518,8,1980,Kenner,United States of America,Louisiana,145,138,7,145,138,7,New Orleans,Las Vegas,0,0,0,0.0,Passenger,July,Friday,North America
 1982-07-06,00:35:00,Aeroflot,411,Ilyushin IL-62M,CCCP-86513,4037536,0,1980,Near Moscow,Russia,,90,80,10,90,80,10,Moscow,Dakar,0,0,0,0.0,Passenger,July,Tuesday,Europe
 1982-07-03,,Air Affaires Gabon,?,Cessna 404 Titan,TR-LYQ,404--425,0,1980,Oganda,Gabon,,12,,,12,,,Booué-Ndjolé,Libreville,0,,,0.0,Passenger,July,Saturday,Africa
-1982-06-28,10:49:00,Aeroflot,8641,Yakovlev YAK-42,CCCP-42529,8040104,0,1980,Southern Belarus,Russia,,132,124,8,132,124,8,Leningrad,Kiev,0,0,0,0.0,Passenger,June,Monday,Europe
+1982-06-28,10:49:00,Aeroflot,8641,Yakovlev YAK-42,CCCP-42529,8040104,0,1980,Southern Belarus,Belarus,,132,124,8,132,124,8,Leningrad,Kiev,0,0,0,0.0,Passenger,June,Monday,Europe
 1982-06-24,20:44:00,British Airways,009,Boeing B-747,G-BDXH,21635/365,0,1980,Mount Galunggung,Indonesia,,257,247,10,0,0,0,Kuala Lampur,Perth,257,247,10,100.0,Passenger,June,Thursday,Asia
 1982-06-22,04:34:00,Air India,?,Boeing B-707-437,VT-DJJ,17723/100,0,1980,Bombay,India,,111,99,12,17,15,2,Kuala Lumpur,Mumbai,94,84,10,84.68468468468468,Passenger,June,Tuesday,Asia
 1982-06-12,,TABA,?,Fairchild-Hiller FH-227B-LCD,PT-LBV,536,0,1980,Tabatinga,Brazil,,44,40,4,44,40,4,Eirunepe,Tabatinga,0,0,0,0.0,Passenger,June,Saturday,South America
@@ -1953,7 +1953,7 @@ Date,Time,Operator,Flight_No,AC_Type,Registration,cn_ln,Ground,Decade,City,Count
 1977-03-30,08:39:00,Aeroflot,H-925,Yakovlev YAK-40,CCCP-87738,9010310,0,1970,Near Zhadanof,Russia,,27,23,4,8,5,3,Dnepropetrovsk,Zhdanov,19,18,1,70.37037037037037,Passenger,March,Wednesday,Europe
 1977-03-29,,Merpati Nusantara Airlines,?,de Havilland Canada DHC-6 Twin Otter 300,PK-NUP,486,0,1970,Bainaha Valley,Indonesia,,23,20,3,15,13,2,Palu,Toli Toli,8,7,1,34.78260869565217,Passenger,March,Tuesday,Asia
 1977-03-27,17:07:00,Pan American World Airways / KLM,1736/4805,Boeing B-747-121 / Boeing B-747-206B,N736PA/PH-BUF,19643/11 / 20400/157,0,1970,Tenerife,Canary Islands,,644,614,30,583,560,23,Tenerife - Las Palmas / Tenerife,Las Palmas,61,54,7,9.472049689440993,Passenger,March,Sunday,
-1977-03-04,03:35:00,Overseas National Airways,?,McDonnell Douglas DC-8-63CF,N8635,46050/430,0,1970,Niamey,Nigeria,,4,0,4,2,0,2,"Paris, France","Niamey, Nigher",2,0,2,50.0,Passenger,March,Friday,Africa
+1977-03-04,03:35:00,Overseas National Airways,?,McDonnell Douglas DC-8-63CF,N8635,46050/430,0,1970,Niamey,Niger,,4,0,4,2,0,2,"Paris, France","Niamey, Nigher",2,0,2,50.0,Passenger,March,Friday,Africa
 1977-03-03,15:00:00,Military - Italian Air Force,?,Lockheed C-130H,MM61995,4491,0,1970,Near Cascina,Italy,,44,38,6,44,38,6,,Training,0,0,0,0.0,Military,March,Thursday,Europe
 1977-03-01,,Alyemda,?,Douglas DC-3,7O-ABF,13475,0,1970,Off Aden,Yemen,,21,17,3,19,16,3,Aden,Al Kari,2,1,0,9.523809523809524,Passenger,March,Tuesday,Asia
 1977-02-28,,Survair,?,Douglas DC-3,C-FNAR,13154,0,1970,Near Saglouc,Canada,,10,7,3,4,2,2,,?,6,5,1,60.0,Passenger,February,Monday,North America
