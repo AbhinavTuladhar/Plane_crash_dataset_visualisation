@@ -3,10 +3,8 @@ import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
 from utils import aggregate_columns, find_crash_counts
-import random
-import json
-import numpy as np
 from plot_creator import PlotMaker
+from collections import namedtuple
 
 
 # LOAD THE DATASET
@@ -142,22 +140,51 @@ class Template:
         
         # If a particular date filter is applied, omit making the corresponding graph since it has only one column.
         error_message = '## Not applicable because of the applied filter(s).'
-        with month_tab:
-            if self.month_filter:
-                st.write(error_message)
-            else:
-                self.plotter.draw_histogram(grouping_col='Month', title='Per month', nbins=12, date_name=None, height=self.figure_height)
-        with day_tab:
-            if self.day_filter:
-                st.write(error_message)
-            else:
-                self.plotter.draw_histogram(grouping_col='Day_of_week', title='Per day', nbins=7, date_name=None, height=self.figure_height)
-        with day_num_tab:
-            if self.day_num_filter:
-                st.write(error_message)
-            else:
-                self.plotter.draw_histogram(grouping_col=self.df['Date'].dt.day, nbins=31, title='Per day number', date_name='Day', height=self.figure_height)
+        tabs_info = [
+            {
+               'tab_name': decade_tab, 
+                'filter': self.decade_filter, 
+                'grouping_column': 'Decade',
+                'title': 'Per decade', 
+                'nbins': 15, 
+            },
+            {
+                'tab_name': month_tab, 
+                'filter': self.month_filter, 
+                'grouping_column': 'Month',
+                'title': 'Per month', 
+                'nbins': 7,
+            },
+            {
+                'tab_name': day_num_tab, 
+                'filter': self.day_num_filter, 
+                'grouping_column': self.df['Date'].dt.day,
+                'title': 'Per day number', 
+                'nbins': 31,
+                'date_name': 'Day',
+            },
+            {
+                'tab_name': day_tab, 
+                'filter': self.day_filter, 
+                'grouping_column': 'Day_of_week',
+                'title': 'Per day', 
+                'nbins': 12,
+            },
+        ]
         
+        for tab_info in tabs_info:
+            with tab_info['tab_name']:
+                if tab_info['filter']:
+                    st.write(error_message)
+                    continue
+                self.plotter.draw_histogram(
+                    grouping_col=tab_info.get('grouping_column'),
+                    title=tab_info.get('title'),
+                    nbins=tab_info.get('nbins'),
+                    date_name=tab_info.get('date_name'),
+                    height=self.figure_height
+                )
+
         # Give an explanation about the x-axis of the time histogram.
         time_tab_message = """
             A pandas column cannot be represented purely in just time - a date needs to be attached to this time data. \n
@@ -168,12 +195,6 @@ class Template:
             with st.expander('A notice regarding the x-axis'):
                 st.markdown(time_tab_message)
             self.plotter.draw_time_histogram(nbins=24*2, title='Time of day', height=self.figure_height)
-            
-        with decade_tab:
-            if self.decade_filter or self.year_filter:
-                st.write(error_message)
-            else:
-                self.plotter.draw_histogram(grouping_col='Decade', nbins=15, title='Per decade', height=self.figure_height)
                             
     def _make_geo_maps(self):
         # Create a worldmap only if all an individual country is not selected
@@ -190,7 +211,7 @@ class Template:
             """
             st.write(message)
         self.plotter.draw_world_map(us_exclude_flag=us_exclude_flag, grouping_col='Country', title='Crashes throughout the world')
-
+        
         # Show the map of US only if all countries are selected or North America has been selected.
         if (self.selected_country == 'United States of America' or
             self.selected_continent == 'North America' or
@@ -212,13 +233,17 @@ class Template:
         year_month, month_day, month_day_number = st.tabs([
             'Year and month', 'Month and day', 'Month and day number'
         ])
-        with year_month:
-            self.plotter.draw_heatmap_year_month(title='Year and month', height=self.figure_height, target_type=type_conversion, show_value=self.show_values)
-        with month_day:
-            self.plotter.make_heatmap_month_day(title='Month and day', height=self.figure_height, target_type=type_conversion, show_value=self.show_values)
-        with month_day_number:
-            self.plotter.make_heatmap_month_day_number(title='Month and day number', height=self.figure_height, target_type=type_conversion, show_value=self.show_values)
-    
+        Kwargs = namedtuple('Kwargs', ['title'])
+        tabs_info = [
+            (year_month, self.plotter.draw_heatmap_year_month, Kwargs('Year and month')),
+            (month_day, self.plotter.draw_heatmap_month_day, Kwargs('Month and day')),
+            (month_day_number, self.plotter.draw_heatmap_month_day_number, Kwargs('Month and day number'))
+        ]
+        
+        for tab_name, function, arguments in tabs_info:
+            with tab_name:
+                function(**arguments._asdict(), target_type=type_conversion, height=self.figure_height, show_value=self.show_values)
+        
     def _make_treemaps(self):
         if self.country_filter:
             return
