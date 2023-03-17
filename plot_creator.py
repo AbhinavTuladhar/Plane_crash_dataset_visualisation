@@ -198,7 +198,7 @@ class PlotMaker:
             figure = self._return_heatmap(matrix=matrix, title=title, height=height, show_value=show_value)
             st.plotly_chart(figure, use_container_width=True)
             
-    def make_heatmap_month_day(self, title=None, height: int = None, target_type: str = None, show_value: bool = False):
+    def draw_heatmap_month_day(self, title=None, height: int = None, target_type: str = None, show_value: bool = False):
         df_agg = self.aggregate_dataframe(grouping_cols=['Month', 'Day_of_week'])
         measure_dtype = self.type_map.get(target_type)
         df_agg[self.measure] = df_agg[self.measure].astype(measure_dtype)
@@ -210,7 +210,7 @@ class PlotMaker:
         figure = self._return_heatmap(matrix=matrix, title=title, height=height, show_value=show_value)
         st.plotly_chart(figure, use_container_width=True)
         
-    def make_heatmap_month_day_number(self, title=None, height: int = None, target_type: str = None, show_value: bool = False):
+    def draw_heatmap_month_day_number(self, title=None, height: int = None, target_type: str = None, show_value: bool = False):
         df_agg = self.aggregate_dataframe(grouping_cols=['Month', self.df['Date'].dt.day], date_name='Day')
         measure_dtype = self.type_map.get(target_type)
         df_agg[self.measure] = df_agg[self.measure].astype(measure_dtype)
