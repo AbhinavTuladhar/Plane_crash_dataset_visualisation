@@ -5,7 +5,7 @@ have occurred all over the world since 1900.
 
 All the data was scraped from this site: http://www.planecrashinfo.com/database.htm
 
-To run locally, run `streamlit run app.py` in the terminal.
+To run locally, run `streamlit run main.py` in the terminal.
 
 The app has been deployed here:
 
