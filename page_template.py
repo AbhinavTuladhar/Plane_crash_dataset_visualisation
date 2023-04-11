@@ -29,7 +29,10 @@ class Template:
         self._make_sidebar()
         self.plotter = PlotMaker(df=self.df, measure=measure, agg_func=agg_func, continuous_colour=self.heatmap_colour, discrete_colour=self.plot_colour)
     
-    def _make_sidebar(self):
+    def _make_sidebar(self) -> None:
+        """
+        Make the sidebar and the elements contained in it.
+        """
         with st.sidebar:
             self.colour_choice = st.selectbox(
                 label='Use CSS colours or hex colours?',
@@ -55,7 +58,10 @@ class Template:
                 step=50
             )
             
-    def _make_filters(self):
+    def _make_filters(self) -> None:
+        """
+        Make all the checkbox filters that appear right below the title.
+        """
         st.markdown('Apply the filters you want.')
         col1, col2, col3, col4, col5, col6, col7= st.columns(7)
         with col1:
@@ -121,18 +127,33 @@ class Template:
         if self.passenger_filter:
             self.plotter.df = self.plotter.df.query('Type == "Passenger"')
             
-    def _make_year_line_plot(self):
+    def _make_year_line_plot(self) -> None:
+        """
+        Make the line graph, with year on the x-axis.
+        
+        Not shown if a year filter is applied.
+        """
         st.markdown('## By year')
         self.plotter.draw_line_plot(grouping_col=self.plotter.df['Date'].dt.year, title='Per year', date_name='Year', height=self.figure_height)
-            
-    def _update_colours(self):
-        self.plotter.continuous_colour = self.heatmap_colour
-        self.plotter.discrete_colour = self.plot_colour
         
-    def _make_main_title(self, title):
+    def _make_main_title(self, title) -> None:
+        """
+        Make the title.
+        """
         st.markdown(f'# {title}')
         
-    def _make_date_tabs(self):
+    def _make_date_tabs(self) -> None:
+        """
+        Create fhe five time-related tabs:
+
+        Decade, month, day of the week, day number and time of day.
+        
+        If a particular time unit is applied as a filtered, then the graph is not shown.
+        
+        For example, if you apply a 2000 decade filter, then the decade graph is not shown.
+        
+        If you apply a Sunday filter, then the day of the week graph is not shown, as so on and so forth.
+        """
         st.markdown('## By date or time')
         decade_tab, month_tab, day_tab, day_num_tab, time_tab = st.tabs([
             'Decade', 'Month', 'Day of week', 'Day number', 'Time of day'
@@ -196,7 +217,10 @@ class Template:
                 st.markdown(time_tab_message)
             self.plotter.draw_time_histogram(nbins=24*2, title='Time of day', height=self.figure_height)
                             
-    def _make_geo_maps(self):
+    def _make_geo_maps(self) -> None:
+        """
+        Make the world maps and US state maps.
+        """
         # Create a worldmap only if all an individual country is not selected
         if self.selected_country:
             return
@@ -219,8 +243,16 @@ class Template:
             st.markdown('## By US states')
             self.plotter.draw_US_map(title='Crashes throughout the US')
             
-    def _make_heatmaps(self, type_conversion: str = None):
+    def _make_heatmaps(self, type_conversion: str = None) -> None:
         """
+        Make three heatmaps:
+        
+        1. Year and month
+        
+        2. Month and day
+        
+        3. Month and day number.
+        
         Arguments:
             type_conversion: The target type of the measure column. Must be one of `int32`, `float64` or `None`
         """
@@ -244,7 +276,10 @@ class Template:
             with tab_name:
                 function(**arguments._asdict(), target_type=type_conversion, height=self.figure_height, show_value=self.show_values)
         
-    def _make_treemaps(self):
+    def _make_treemaps(self) -> None:
+        """
+        Make country-wise and continent+country-wise treemaps.
+        """
         if self.country_filter:
             return
         st.markdown('## Treemaps')
@@ -258,7 +293,10 @@ class Template:
         main_title: str, 
         target_type: str, 
         treemap_flag: bool = True
-    ):
+    ) -> None:
+        """
+        ...make the page.
+        """
         self._make_main_title(main_title)
         self._make_filters()
         if not self.year_filter:
