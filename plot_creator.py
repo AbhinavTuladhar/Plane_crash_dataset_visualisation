@@ -70,6 +70,16 @@ class PlotMaker:
         return df_agg
     
     def draw_histogram(self, grouping_col: str, title: str, nbins: int, date_name: str = None, height: int = None):
+        """
+        Draw a histogram with `grouping_col` on the x-axis, and `measure` on the y-axis.
+        
+        Arguments:
+            grouping_col: The column by which to perform hte aggregation.
+            title: The title of the graph
+            nbins: The number of bins in the histogram
+            date_name: The name to replace the `Date` column, if aggregation is done by a date column.
+            height: The height of the figure.
+        """
         df_agg = self.aggregate_dataframe(grouping_cols=grouping_col, date_name=date_name)
         x = grouping_col if date_name is None else date_name
         hist_funcs_map = {
@@ -91,6 +101,15 @@ class PlotMaker:
         st.plotly_chart(fig, use_container_width=True)
         
     def draw_line_plot(self, grouping_col: str, title: str, date_name: str = None, height: int = None):
+        """
+        Draw a line plot with `grouping_col` on the x-axis, and `measure` on the y-axis.
+        
+        Arguments:
+            grouping_col: The column by which to perform hte aggregation.
+            title: The title of the graph
+            date_name: The name to replace the `Date` column, if aggregation is done by a date column.
+            height: The height of the figure.
+        """
         df_agg = self.aggregate_dataframe(grouping_cols=grouping_col, date_name=date_name)
         
         fig = px.line(
@@ -154,7 +173,19 @@ class PlotMaker:
         )
         st.plotly_chart(fig, use_container_width=True)
         
-    def _return_heatmap(self, matrix, title=None, height: int = None, show_value: bool = False) -> go.Figure:
+    def _return_heatmap(self, matrix: pd.DataFrame, title=None, height: int = None, show_value: bool = False) -> go.Figure:
+        """
+        Return a heatmap, with `matrix as the input`
+        
+        Arguments:
+            matrix: A Pandas DataFrame, that has to be a pivot table.
+            title: The title of the graph
+            height: The height of the graph.
+            show_values: Whether to show the values in hte cell values.
+            
+        Returns:
+            A plotly graph object figure.
+        """
         fig = px.imshow(
             matrix, 
             aspect='equal',
@@ -179,8 +210,9 @@ class PlotMaker:
         Arguments:
             division: The number of parts to divide the total number of decades with.
             title: The title
-            size: A list consisting of [width, height]
+            height: The height of the graph
             target_type: The type that the measure column should be converted to. Must be one of `int32`, `float64` or `None`
+            show_value: Whether to show the values in the cell values.
         """
         decades = self.df['Decade'].unique().tolist()
         decade_values = decades[::-divisions]
@@ -199,6 +231,15 @@ class PlotMaker:
             st.plotly_chart(figure, use_container_width=True)
             
     def draw_heatmap_month_day(self, title=None, height: int = None, target_type: str = None, show_value: bool = False):
+        """
+        Make a heatmap of month vs day.
+        
+        Arguments:
+            title: The title of the graph
+            height: The height of the graph.
+            target_type: The type that the measure column should be converted to. Must be one of `int32`, `float64` or `None`
+            show_value: Whether to show the values in the cell values.
+        """
         df_agg = self.aggregate_dataframe(grouping_cols=['Month', 'Day_of_week'])
         measure_dtype = self.type_map.get(target_type)
         df_agg[self.measure] = df_agg[self.measure].astype(measure_dtype)
@@ -211,6 +252,15 @@ class PlotMaker:
         st.plotly_chart(figure, use_container_width=True)
         
     def draw_heatmap_month_day_number(self, title=None, height: int = None, target_type: str = None, show_value: bool = False):
+        """
+        Make a heatmap of month vs day. number
+        
+        Arguments:
+            title: The title of the graph
+            height: The height of the graph.
+            target_type: The type that the measure column should be converted to. Must be one of `int32`, `float64` or `None`
+            show_value: Whether to show the values in the cell values.
+        """
         df_agg = self.aggregate_dataframe(grouping_cols=['Month', self.df['Date'].dt.day], date_name='Day')
         measure_dtype = self.type_map.get(target_type)
         df_agg[self.measure] = df_agg[self.measure].astype(measure_dtype)
@@ -223,6 +273,14 @@ class PlotMaker:
         st.plotly_chart(figure, use_container_width=True)
         
     def draw_time_histogram(self, nbins: int, title: str=None, height: int = None):
+        """
+        Make a histogram with time of day on the x-axis
+        
+        Arguments:
+            nbins: The number of binsi n the histogram.
+            title: The title of the graph
+            height: The height of the graph.
+        """
         df_time = self.aggregate_dataframe(grouping_cols='Time')
         df_time['Time'] = pd.to_datetime(df_time['Time'], format="%H:%M:%S").sort_values()
         hist_funcs_map = {
@@ -244,10 +302,17 @@ class PlotMaker:
         st.plotly_chart(fig, use_container_width=True)
         
     def draw_country_treemap(self, us_exclude_flag: bool = False, height: int = None):
+        """
+        Draw a country-wise treemap.
+        
+        Arguments:
+            us_exlucde_flag: Whether to exlucde the US in the world map.
+            height: The height of the figure.
+        """
         df_agg = self.aggregate_dataframe(grouping_cols='Country')
         if us_exclude_flag:
             df_agg = df_agg.query('Country != "United States of America"')
-        self.country_treemap_threshold = st.number_input(label=f'Enter the threshold value for `{self.measure}`', key=1, step=1)
+        self.country_treemap_threshold = st.number_input(label=f'Enter the threshold value for `{self.measure}`', key=1, step=1, min_value=1)
         df_agg = df_agg.query(f'{self.measure} >= @self.country_treemap_threshold')
         fig = px.treemap(
             df_agg, 
@@ -261,6 +326,13 @@ class PlotMaker:
         st.plotly_chart(fig, use_container_width=True)
         
     def draw_continent_country_treemap(self, us_exclude_flag: bool = False, height: int = None):
+        """
+        Draw a continent and country-wise treemap.
+        
+        Arguments:
+            us_exlucde_flag: Whether to exlucde the US in the world map.
+            height: The height of the figure.
+        """
         df_agg = self.aggregate_dataframe(grouping_cols=['Continent', 'Country'])
         if us_exclude_flag:
             df_agg = df_agg.query('Country != "United States of America"')
